@@ -25,6 +25,7 @@ export default {
 
 <style>
 .navbar-wrapper {
+  font-family: 'Inconsolata', monospace;
   background: #9B3838;
 }
 </style>
