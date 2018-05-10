@@ -1,7 +1,7 @@
 <template>
   <div class="login container">
     <form @submit.prevent="login" class="card-panel">
-      <h2 class="center deep-perple-text">Login</h2>
+      <h2 class="center deep-purple-text">Login</h2>
       <div class="field">
         <label for="email">Email</label>
         <input id="email" type="email" v-model="email">
@@ -10,7 +10,7 @@
         <label for="password">Password</label>
         <input id="password" type="password" v-model="password">
       </div>
-      <p v-if="feedback" class="red-text center">{{ feddback }}</p>
+      <p v-if="feedback" class="red-text center">{{ feedback }}</p>
       <div class="field center">
         <button class="btn deep-purple">Login</button>
       </div>
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   name: 'Login',
   data() {
@@ -30,7 +32,18 @@ export default {
   },
   methods: {
     login() {
-      console.log(this.email, this.password)
+      if(this.email && this.password) {
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+          .then(user => {
+            console.log(user)
+            this.$router.push({ name: 'GMap' })
+          }).catch(e => {
+            this.feedback = e.message
+          })
+        this.feedback = null
+      } else {
+        this.feedback = 'Please fill in both fields'
+      }
     }
   }
 }
