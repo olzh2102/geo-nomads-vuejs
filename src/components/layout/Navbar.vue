@@ -4,8 +4,9 @@
       <div class="container">
         <a href="" class="brand-logo left">GeoNomads</a>
         <ul class="right">
-          <li><a href="">SingUp</a></li>
+          <li><router-link :to="{ name: 'Singup' }">SingUp</router-link></li>
           <li><a href="">Login</a></li>
+          <li><a @click="logout">Logout</a></li>
         </ul>
       </div>
     </nav>
@@ -13,11 +14,20 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
   name: 'Navbar',
   data() {
     return {
 
+    }
+  },
+  methods: {
+    logout(){
+      firebase.auth().signOut().then(() => {
+        this.$router.push({ name: 'Singup' })
+      })
     }
   }
 }
