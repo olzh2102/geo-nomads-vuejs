@@ -5,7 +5,7 @@
         <a href="" class="brand-logo left">GeoNomads</a>
         <ul class="right">
           <li><router-link :to="{ name: 'Singup' }">SingUp</router-link></li>
-          <li><a href="">Login</a></li>
+          <li><router-link :to="{ name: 'Login' }">Login</router-link></li>
           <li><a @click="logout">Logout</a></li>
         </ul>
       </div>
